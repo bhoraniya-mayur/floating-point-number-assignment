@@ -1,0 +1,56 @@
+Infloating point representation, there are three compinents.
+1) sign bit
+2) mantisa
+3) exponent
+
+
+answer - 1 :-
+
+- Precision is the number of digits in a number. Scale is the number of digits to the right of the decimal point in a number. For example, the number 123.45 has a precision of 5 and a scale of 2.
+
+- So, if there is more number of bits to represent exponent, implies we can represent large positive as well as negative number. this implies more precision.
+
+- Even if there is more number of bits to represents mantisa, we can represent more number of bits in fraction part. this also implies increase of precision.
+
+- So, both component mantisa as well as exponent affect on precision.
+
+
+answer - 2 :-
+
+-  In the case when the exponent field has a zero bit string but the fraction field has a nonzero bitstring, then number represented is said to be subnormal.
+
+- suppose, smallest exponent that can be represented is -127. so, smallest number that can be represented is 1.0 x 2^(-127). But, if we release the constrain of leading one, then smallest number that can be represented is 0.1 x 2^(-127). this is called subnormal number. It is very important to realise that subnormal numbers are represented with less precision than normal numbers. 
+
+- The purpose of having subnormal numbers is to smooth the gap between the smallest normal number and zero.
+
+- For the single format, the difference between a normal number and a subnormal number is that the leading bit of the significand (the bit to left of the binary point) of a normal number is 1, whereas the leading bit of the significand of a subnormal number is 0. Single-format subnormal numbers were called single-format denormalized numbers in IEEE Standard 754.
+
+- maximum normal number : 7f7fffff(bit pattern) and 3.40282347e+38(in decimal).
+- minimum positive normal number : 00800000(bit pattern) and 1.17549435e-38(in decimal).
+- maximum subnormal number  : 007fffff(bit pattern) and 1.17549421e-38(in decimal).
+- minimum positive subnormal number  : 00000001(bit pattern) and 1.40129846e-45(in decimal).
+
+
+answer - 3 :-
+
+There are mainly two category of rounding rules :
+	(1) Roundings to nearest
+		(i) Round to nearest, ties to even
+		(ii) Round to nearest, ties away from zero
+	(2) Directed roundings
+		(i)	Round toward 0
+		(ii) Round toward positive infinity 
+		(iii) Round toward negative infinity
+
+Example of rounding to integers using the IEEE 754 rules :-
+Mode / Example Value  				+111.5		+112.5		−111.5		−112.5
+===============================================================================
+to nearest, ties to even    		+112.0		+112.0		−112.0		−112.0
+
+to nearest, ties away from zero		+112.0		+113.0		−112.0		−113.0
+
+toward 0							+111.0		+112.0		−111.0		−112.0
+
+toward +∞							+112.0		+113.0		−111.0		−112.0
+
+toward −∞							+111.0		+112.0		−112.0		−113.0
